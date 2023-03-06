@@ -5,6 +5,8 @@ from requests import request
 from .models import m_details
 from django.contrib import messages
 from django.contrib.auth import logout,login
+import smtplib
+
 
 # Create your views here.
 def index(request):
@@ -66,6 +68,11 @@ def loginn(request):
             auth.login(request,user)
             request.session['uname']=username
             return redirect("home")
+        else:
+            messages.error(request,"Invalid credentials")
+            return redirect("/login.html")
+        
+
 
 
     else:
@@ -119,4 +126,29 @@ def add(request):
 def player(request, tlink,name,description):
     context = {'tlink': tlink,'name':name,'description':description}
     return render(request,'player.html', context)
+
+def contact(request):
+    return render(request,"contact.html")
+    
+def send_email(request):
+    if request.method=='POST':
+
+        # Set up the SMTP server
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        server.login('sumitpawar0759@gmail.com', 'jctxzxbzdglluxls')
+        # Get the recipient, subject, and message from the form
+        to = "arjun98999899+contact@gmail.com"
+        name=request.session['uname']
+        subject = request.POST['emaill']
+        message = request.POST['message']
+
+        # Send the email
+        msg = f'Subject: {name}\n\n{subject}\n\n{message}'
+        server.sendmail('sumitpawar0759@gmail.com', to, msg)
+
+        # Close the server
+        server.quit()
+        messages.success(request,"sent")
+        return redirect("contact")
     

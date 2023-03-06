@@ -7,7 +7,7 @@
     <title>Welcome To ApnaTheatre</title>
     <link rel="shortcut icon" href="./Images/Logo/Title.jpeg" type="image/x-icon">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="./landing-page.js"></script>
+    
     <!-- Font  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,7 +35,6 @@
       width: 100%;
       height: 100vh;
       z-index: 99999999;
-      background: url('loaderLogo.webp'); /* your icon gif file path */
       background-repeat: no-repeat;
       background-color: black;
       background-position: center;
@@ -211,6 +210,7 @@
       justify-content: space-around;
    }
   }
+  hr { background-color: red; height: 1px; border: 0; }
   
   </style>
 </head>
@@ -220,19 +220,17 @@
 
       <div class="text-container">
         <div class="container-2">
-            <a class="navbar-brand" href="home.html"><img class="logo" src="Images/TheaterLogoFinal.png" alt=""></a>
+            <a class="navbar-brand" href="login"><img class="logo" src="Images/TheaterLogoFinal.png" alt=""></a>
          <div class="intro-container">
-            <h1>WELCOME TO<br><span>ApnaTheatre</span></h1>
-            <p>Stream your favourite movies online. </p>
+          <br><br>
+            <h1>WELCOME TO<br><span>Streamflex</span></h1>
+            <hr>
+            <br>
+            <p>Stream and Download your favourite movies. </p>
          </div>
          <a href="#" class="button" onclick="myFunction()">Login</a>
         </div>
         <div class="bottom-text-container1">
-        <div class="bottom-text-container">
-          <p class="watch">Watch</p>
-          <p class="chill">Chill</p>
-          <p class="repeat">Repeat</p>
-        </div>
       </div>
       </div>
 
