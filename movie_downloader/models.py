@@ -55,11 +55,17 @@ def filepath(request, filename):
     filename = "%s%s" % (timeNow, old_filename)
     return os.path.join('Images/', filename)
 
+def vfilepath(instance, filename):
+    old_filename = filename
+    timeNow = datetime.datetime.now().strftime('%Y%m%d%H:%M:%S')
+    filename = "%s%s%s" % (timeNow, instance.name, ".mp4")
+    return os.path.join(filename)
+
 class m_details(models.Model):
     name = models.TextField(max_length=191)
     description = models.TextField(max_length=500, null=True)
     tlink = models.TextField(max_length=500,null=True)
-    mlink = models.TextField(max_length=500)
+    mlink = models.FileField(upload_to=vfilepath, null=True, blank=True)
     category = models.TextField(max_length=50)
     image = models.ImageField(upload_to=filepath, null=True, blank=True)
 

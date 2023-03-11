@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect, HttpResponse
 from django.contrib.auth.models import User,auth
 import mysql.connector as c
 from requests import request
+from M_downloader import settings
 from .models import m_details
 from django.contrib import messages
 from django.contrib.auth import logout,login
@@ -93,7 +94,7 @@ def add(request):
         prod.name = request.POST.get('mname')
         prod.description = request.POST.get('desc')
         prod.tlink = request.POST.get('tlink')
-        prod.mlink = request.POST.get('mlink')
+        prod.mlink = request.FILES['mlink']
         prod.category = request.POST.get('cat')
         image = request.FILES['img']
         
@@ -152,3 +153,10 @@ def send_email(request):
         messages.success(request,"sent")
         return redirect("contact")
     
+
+
+def video_player(request,mlink,name,description):
+    # video_url = '/static/movies/Snap x Baarishen - Mashup (Full Version) - Gravero & TP.mp4' # change this to the URL of your video file
+    video_url = "/Images/" + str(mlink)
+    context = {'video_url': video_url,'name':name,'description':description}
+    return render(request, 'mplayer.html', context)

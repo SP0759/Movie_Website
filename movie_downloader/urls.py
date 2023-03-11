@@ -18,6 +18,7 @@ urlpatterns = [
     path('player/<str:tlink>/<str:name>/<str:description>', views.player, name='player'),
     path("contact",views.contact,name="contact"),
     path("sendemail",views.send_email,name="sendemail"),
+    path("mplayer/<str:mlink>/<str:name>/<str:description>", views.video_player, name='mplayer')
     
 
 

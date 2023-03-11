@@ -113,9 +113,11 @@
             <h5 class="card-title">{{ i.name }}</h5>
             <p class="card-text">{{ i.description|truncatechars:75 }}</p>
             <a href="{% url 'player' tlink=i.tlink name=i.name description=i.description %}" class="btn btn-outline-danger" style="margin-right:10px;">Trailer</a>
-            <a href="{{ i.mlink }}" class="btn btn-outline-danger" style="margin-right:10px;">Watch</a>
-            <a href="{{ i.mlink }}" class="btn btn-outline-danger"><img src="Images/Images/dld.png" style="height:20px; width:30px"></a>
-          </div>
+            <a href="{% url 'mplayer' name=i.name mlink=i.mlink description=i.description %}" class="btn btn-outline-danger" style="margin-right:10px;">Watch</a>
+            <a href="/Images/{{ i.mlink }}" class="btn btn-outline-danger" download="{{ i.name }}.mp4">
+              <img src="Images/Images/dld.png" style="height:20px; width:30px">
+            </a>
+                    </div>
         </div>
       </div>
       {% endif %}
@@ -137,9 +139,10 @@
             <h5 class="card-title">{{ i.name }}</h5>
             <p class="card-text">{{ i.description|truncatechars:75 }}</p>
             <a href="{% url 'player' tlink=i.tlink name=i.name description=i.description %}" class="btn btn-outline-danger" style="margin-right:10px;">Trailer</a>
-            <a href="{{ i.mlink }}" class="btn btn-outline-danger" style="margin-right:10px;">Watch</a>
-            <a href="{{ i.mlink }}" class="btn btn-outline-danger"><img src="Images/Images/dld.png" style="height:20px; width:30px"></a>
-          </div>
+            <a href="{% url 'mplayer' mlink=i.mlink|urlencode name=i.name description=i.description %}" class="btn btn-outline-danger" style="margin-right:10px;">Watch</a>
+            <a href="/Images/{{ i.mlink }}" class="btn btn-outline-danger" download="{{ i.name }}.mp4">
+              <img src="Images/Images/dld.png" style="height:20px; width:30px">
+            </a>          </div>
         </div>
       </div>
       {% endif %}
@@ -161,9 +164,10 @@
             <h5 class="card-title">{{ i.name }}</h5>
             <p class="card-text">{{ i.description|truncatechars:75 }}</p>
             <a href="{% url 'player' tlink=i.tlink name=i.name description=i.description %}" class="btn btn-outline-danger" style="margin-right:10px;">Trailer</a>
-            <a href="{{ i.mlink }}" class="btn btn-outline-danger" style="margin-right:10px;">Watch</a>
-            <a href="{{ i.mlink }}" class="btn btn-outline-danger"><img src="Images/Images/dld.png" style="height:20px; width:30px"></a>
-          </div>
+            <a href="{% url 'mplayer' mlink=i.mlink|urlencode name=i.name description=i.description %}" class="btn btn-outline-danger" style="margin-right:10px;">Watch</a>
+            <a href="/Images/{{ i.mlink }}" class="btn btn-outline-danger" download="{{ i.name }}.mp4">
+              <img src="Images/Images/dld.png" style="height:20px; width:30px">
+            </a>          </div>
         </div>
       </div>
       {% endif %}
@@ -176,21 +180,29 @@
     <hr style="color:white"></hr>
     <div class="row my-4">
       {% for i in movies %}
-      {% if i.category == 'Others' %}
-      <div class="col-md-4 col-sm-6 my-2">
-        <div class="card" style="width: 18rem; margin: auto;">
-          <img src="{{ i.image.url }}" class="card-img-top" alt="..." width="100" height="350">
-          <div class="card-body">
-            <h5 class="card-title">{{ i.name }}</h5>
-            <p class="card-text">{{ i.description|truncatechars:75 }}</p>
-            <a href="{% url 'player' tlink=i.tlink name=i.name description=i.description %}" class="btn btn-outline-danger" style="margin-right:10px;">Trailer</a>
-            <a href="{{ i.mlink }}" class="btn btn-outline-danger" style="margin-right:10px;">Watch</a>
-            <a href="{{ i.mlink }}" class="btn btn-outline-danger"><img src="Images/Images/dld.png" style="height:20px; width:30px"></a>
-          </div>
-        </div>
+  {% if i.category == 'Others' %}
+  <div class="col-md-4 col-sm-6 my-2">
+    <div class="card" style="width: 18rem; margin: auto;">
+      <img src="{{ i.image.url }}" class="card-img-top" alt="..." width="100" height="350">
+      <div class="card-body">
+        <h5 class="card-title">{{ i.name }}</h5>
+        <p class="card-text">{{ i.description|truncatechars:75 }}</p>
+        <a href="{% url 'player' tlink=i.tlink name=i.name description=i.description %}" class="btn btn-outline-danger" style="margin-right:10px;">Trailer</a>
+        <a href="{% url 'mplayer' mlink=i.mlink name=i.name description=i.description %}" class="btn btn-outline-danger" style="margin-right:10px;">Watch</a>
+
+        {% comment %} <a href="{{ i.mlink }}" class="btn btn-outline-danger"><img src="Images/Images/dld.png" style="height:20px; width:30px"></a> {% endcomment %}
+        <a href="/Images/{{ i.mlink }}" class="btn btn-outline-danger" download="{{ i.name }}.mp4">
+          <img src="Images/Images/dld.png" style="height:20px; width:30px">
+        </a>
+        
       </div>
-      {% endif %}
-      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+{% endfor %}
+
+
+
     </div>
   </div>
   

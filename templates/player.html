@@ -83,15 +83,6 @@
               <li class="nav-item">
                   <a class="nav-link" href="about.php">About</a>
               </li>
-              <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Top Categories
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">';
-                  <a class="dropdown-item" href="threadlist.php?catid='.$row['category_id'].'"></a>';
-                  </div>
-              </li>
               <li class="nav-item">
                   <a class="nav-link" href="contact.php">Contact</a>
               </li>
@@ -103,19 +94,9 @@
           {% if user.is_superuser %}
             <a href="add"><button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Add movies</button></a>
           {% endif %}
-          <ul class="navbar-nav ml-auto" left:"0px";>
-          <li class="nav-item dropdown" >
-            <a class="nav-link dropdown-toggle ml-2" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" margin-left="3px">
-              Welcome <b>{{request.user}}</b>
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="margin-right:20px">
-              <a class="dropdown-item" href="#">profile</a>
-              
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="logout">Logout</a>
-            </div>
-          </li>
-        </ul>
+          <h5 class="nav-link ml-2" style="color:white" aria-haspopup="true" aria-expanded="false" margin-left="3px">
+            Welcome <b>{{request.user}}</b>
+          </h5>
 
   
 
